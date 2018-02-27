@@ -1,0 +1,47 @@
+{
+  "name": "cryptodoggies",
+  "version": "1.0.0",
+  "description": "Purchase your favourite Crypto Adrians on the blockchain",
+  "keywords": [
+    "solidity",
+    "ethereum",
+    "smart",
+    "contracts",
+    "cryptodoggies"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/t04glovern/cryptodoggies.git"
+  },
+  "bugs": {
+    "url": "https://github.com/t04glovern/cryptodoggies/issues"
+  },
+  "homepage": "https://github.com/t04glovern/cryptodoggies",
+  "devDependencies": {
+    "bignumber.js": "^6.0.0",
+    "dotenv": "^5.0.0",
+    "ethereumjs-testrpc": "^6.0.1",
+    "ethereumjs-util": "^5.1.4",
+    "lite-server": "^2.3.0",
+    "solc": "^0.4.20",
+    "solidity-parser": "^0.4.0",
+    "truffle": "^4.0.6",
+    "truffle-hdwallet-provider": "0.0.3"
+  },
+  "dependencies": {
+    "jsonfile": "^4.0.0",
+    "web3": "^0.20.5",
+    "zeppelin-solidity": "^1.7.0"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "dev": "lite-server",
+    "test": "scripts/test.sh",
+    "compile": "truffle compile",
+    "console": "truffle console",
+    "migrate": "truffle migrate --reset",
+    "deploy": "scripts/gh-pages.sh"
+  }
+}
