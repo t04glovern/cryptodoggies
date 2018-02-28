@@ -1,0 +1,37 @@
+/* Cards */
+.shadow {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+}
+
+.shadow:hover {
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.card-title {
+    font-size: 1.5rem;
+    color: white;
+    font-weight: 1000;
+}
+
+.card-footer {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card-img-top {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.card-text {
+    color: #636c72;
+    font-weight: 400;
+}
+
+.card-container {
+    margin-left: 100px;
+    margin-right: 100px;
+}

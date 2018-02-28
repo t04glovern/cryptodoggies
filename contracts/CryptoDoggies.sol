@@ -1,8 +1,8 @@
 pragma solidity ^0.4.18;
 
-import "./math/SafeMath.sol";
-import "./ownership/AccessControl.sol";
-import "./token/ERC721.sol";
+import "./SafeMath.sol";
+import "./AccessControl.sol";
+import "./ERC721.sol";
 
 
 /**
@@ -24,10 +24,10 @@ contract CryptoDoggies is AccessControl, DetailedERC721 {
     using SafeMath for uint256;
 
     /// @dev The TokenCreated event is fired whenever a new token is created.
-    event TokenCreated(uint256 tokenId, string name, uint256 price, address owner);
+    event TokenCreated(uint256 tokenId, string name, bytes5 dna, uint256 price, address owner);
 
     /// @dev The TokenSold event is fired whenever a token is sold.
-    event TokenSold(uint256 indexed tokenId, string name, uint256 sellingPrice,
+    event TokenSold(uint256 indexed tokenId, string name, bytes5 dna, uint256 sellingPrice,
     uint256 newPrice, address indexed oldOwner, address indexed newOwner);
 
     /// @dev A mapping from tokenIds to the address that owns them. All tokens have
@@ -48,6 +48,7 @@ contract CryptoDoggies is AccessControl, DetailedERC721 {
 
     struct Doggy {
         string name;
+        bytes5 dna;
     }
 
     Doggy[] private doggies;
@@ -65,22 +66,33 @@ contract CryptoDoggies is AccessControl, DetailedERC721 {
         require(_owner != address(0));
         require(_price >= startingPrice);
 
-        _createToken(_name, _owner, _price);
+        bytes5 _dna = _generateRandomDna(); // Generate random DNA
+        _createToken(_name, _dna, _owner, _price);
     }
 
     /// @dev Creates a new token with the given name.
     function createToken(string _name) public onlyCLevel {
-        _createToken(_name, address(this), startingPrice);
+        bytes5 _dna = _generateRandomDna(); // Generate random DNA
+        _createToken(_name, _dna, address(this), startingPrice);
     }
 
-    function _createToken(string _name, address _owner, uint256 _price) private {
+    /// @dev Creates a pseudo random 5byte value for the DNA.
+    function _generateRandomDna() private view returns (bytes5) {
+        uint256 lastBlockNumber = block.number - 1;
+        bytes32 hashVal = bytes32(block.blockhash(lastBlockNumber));
+        bytes5 dna = bytes5((hashVal & 0xffffffff) << 216);
+        return dna;
+    }
+
+    function _createToken(string _name, bytes5 _dna, address _owner, uint256 _price) private {
         Doggy memory _doggy = Doggy({
-            name: _name
+            name: _name,
+            dna: _dna
         });
         uint256 newTokenId = doggies.push(_doggy) - 1;
         tokenIdToPrice[newTokenId] = _price;
 
-        TokenCreated(newTokenId, _name, _price, _owner);
+        TokenCreated(newTokenId, _name, _dna, _price, _owner);
 
         // This will assign ownership, and also emit the Transfer event as per ERC721 draft
         _transfer(address(0), _owner, newTokenId);
@@ -88,11 +100,13 @@ contract CryptoDoggies is AccessControl, DetailedERC721 {
 
     function getToken(uint256 _tokenId) public view returns (
         string _tokenName,
+        bytes5 _dna,
         uint256 _price,
         uint256 _nextPrice,
         address _owner
     ) {
         _tokenName = doggies[_tokenId].name;
+        _dna = doggies[_tokenId].dna;
         _price = tokenIdToPrice[_tokenId];
         _nextPrice = nextPriceOf(_tokenId);
         _owner = tokenIdToOwner[_tokenId];
@@ -179,7 +193,7 @@ contract CryptoDoggies is AccessControl, DetailedERC721 {
         // update fields before emitting an event
         tokenIdToPrice[_tokenId] = nextPriceOf(_tokenId);
         // emit event
-        TokenSold(_tokenId, doggies[_tokenId].name, sellingPrice, priceOf(_tokenId), oldOwner, newOwner);
+        TokenSold(_tokenId, doggies[_tokenId].name, doggies[_tokenId].dna, sellingPrice, priceOf(_tokenId), oldOwner, newOwner);
 
         // extra ether which should be returned back to buyer
         uint256 excess = msg.value.sub(sellingPrice);
@@ -238,7 +252,6 @@ contract CryptoDoggies is AccessControl, DetailedERC721 {
 
     function ownerOf(uint256 _tokenId) public view returns (address _owner) {
         _owner = tokenIdToOwner[_tokenId];
-        // require(_owner != address(0));
     }
 
     function approve(address _to, uint256 _tokenId) public whenNotPaused onlyERC721 {

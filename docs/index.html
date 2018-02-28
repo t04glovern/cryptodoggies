@@ -1,1 +1,132 @@
-Website Coming Soon
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>CryptoKittens</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+        crossorigin="anonymous">
+
+    <!-- Custom styles for this template -->
+	<link href="css/main.css" rel="stylesheet">
+	<link href="css/card.css" rel="stylesheet">
+	<link href="css/ribbon.css" rel="stylesheet">
+
+    <!-- Fonts from Google Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Lato:300,400,900' rel='stylesheet' type='text/css'>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+    <div id="headerwrap">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="centered">CryptoDoggies</h1>
+                </div>
+                <!-- /col-sm-6 -->
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </div>
+	<!-- /headerwrap -->
+
+	<hr>
+	<!-- /hr -->
+
+    <div class="card-container">
+        <div class="row mt centered">
+            <div class="col-sm-12">
+                <h1>Marketplace</h1>
+			</div>
+			<!-- /col-sm-12 -->
+        </div>
+        <!-- /row -->
+
+        <div id="card-row" class="row card-columns card-deck">
+            <!-- Doggies Load Here -->
+		</div>
+		<!-- /card-row -->
+
+	</div>
+	<!-- /card-container -->
+
+    <div id="card-template" style="display: none;">
+        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
+            <div class="ribbon doggy-card">
+                <div class="card shadow-1">
+                    <!-- Doggy Name -->
+                    <h4 class="card-title doggy-name" style="display:inline-block";>Name</h4>
+                    <!-- Doggy Image -->
+                    <a class="text-muted">
+                        <canvas class="card-img-top doggy-canvas" id="doggy-canvas-id" style="width:100%;"></canvas>
+                    </a>
+                    <div class="card-block">
+                        <!-- Doggy DNA -->
+                        <div class="doggy-text">
+                            <small>DNA: </small>
+                            <a class="doggy-dna"></a>
+                        </div>
+                        <div class="doggy-text">
+                            <small>Next Price: </small>
+                            <a class="doggy-next-price"></a>
+                        </div>
+                        <hr>
+                        <!-- Doggy Purchase -->
+                        <form class="doggy-purchase">
+                            <div class="form-group input-group">
+                                <!-- Doggy Buy Value -->
+                                <text class="form-control doggy-price" type="number" id="doggyPrice"></text>
+                                <!-- Doggy Buy Button -->
+                                <button class="btn btn-primary btn-buy" type="submit" data-id="0" id="doggyBuyButton">Buy</button>
+                            </div>
+                            <!-- /form-group -->
+                        </form>
+                        <!-- /form -->
+                    </div>
+					<!-- /card-block -->
+                    <div class="card-footer">
+                        <!-- Doggy Owner Address -->
+                        <small>Owner: </small>
+                        <a class="text-muted doggy-owner" href="" target="_blank"></a>
+					</div>
+					<!-- /card-footer -->
+                </div>
+                <!-- /card -->
+            </div>
+            <!-- /ribbon -->
+        </div>
+        <!-- /col-xl-3 /col-lg-3 /col-md-4 /col-sm-6 -->
+	</div>
+	<!-- /card-template -->
+
+    <!-- ========= Bootsrap 4 - JavaScript ========= -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+		crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+	crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+		crossorigin="anonymous"></script>
+
+	<!-- ========= Local JavaScript ========= -->
+	<script type="text/javascript" src="js/lib/bignumber.min.js"></script>
+	<script type="text/javascript" src="js/lib/web3.min.js"></script>
+	<script type="text/javascript" src="js/lib/truffle-contract.min.js"></script>
+	<script type="text/javascript" src="js/doggyidparser.js"></script>
+	<script type="text/javascript" src="js/doggies.js"></script>
+
+</body>
+
+</html>
