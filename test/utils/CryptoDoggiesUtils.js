@@ -11,8 +11,8 @@ module.exports = function (CryptoDoggies, accounts) {
 	  });
 	};
 
-	function checkTokenCreation (name) {
-	  it('createToken should create a random token', function (done) {
+	function checkDoggyCreation (name) {
+	  it('createToken should create a random doggy named ' + name, function (done) {
 		CryptoDoggies.deployed().then(async function (instance) {
 		  await instance.createToken(name, { from: accounts[0] })
 			.then(function (result) {
@@ -25,6 +25,6 @@ module.exports = function (CryptoDoggies, accounts) {
 	return {
 	/** Token Details */
 	  checksTotalSupply: checksTotalSupply,
-	  checkTokenCreation: checkTokenCreation,
+	  checkDoggyCreation: checkDoggyCreation,
 	};
   };

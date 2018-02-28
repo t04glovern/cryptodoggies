@@ -25,7 +25,7 @@
     "lite-server": "^2.3.0",
     "solc": "^0.4.20",
     "solidity-parser": "^0.4.0",
-    "truffle": "^4.0.6",
+    "truffle": "^4.1.0",
     "truffle-hdwallet-provider": "0.0.3"
   },
   "dependencies": {

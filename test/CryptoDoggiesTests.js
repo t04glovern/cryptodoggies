@@ -26,15 +26,8 @@ contract('CryptoDoggies', function (accounts) {
    */
 
   checksTotalSupply(0);
-  checkTokenCreation(generateRandomHex());
 
-  /** Randomizes a 5byte hex value for the kitty generation */
-  function generateRandomHex () {
-    var hex = '0x00' +
-      Math.floor(Math.random() * 255).toString(16) +
-      Math.floor(Math.random() * 255).toString(16) +
-      Math.floor(Math.random() * 255).toString(16) +
-      Math.floor(Math.random() * 255).toString(16);
-    return hex;
-  }
+	for (x = 0; x < 100; x++) {
+		checkDoggyCreation('Doggy' + x);
+	}
 });
