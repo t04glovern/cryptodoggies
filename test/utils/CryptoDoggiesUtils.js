@@ -16,7 +16,8 @@ module.exports = function (CryptoDoggies, accounts) {
 		CryptoDoggies.deployed().then(async function (instance) {
 		  await instance.createToken(name, { from: accounts[0] })
 			.then(function (result) {
-			  assert.include(result.logs[0].event, 'TokenCreated', 'TokenCreated event was not triggered');
+				assert.include(result.logs[0].event, 'TokenCreated', 'TokenCreated event was not triggered');
+				assert.equal(result.logs[0].args.name, name);
 			});
 		}).then(done).catch(done);
 	  });
@@ -27,4 +28,4 @@ module.exports = function (CryptoDoggies, accounts) {
 	  checksTotalSupply: checksTotalSupply,
 	  checkDoggyCreation: checkDoggyCreation,
 	};
-  };
+};
