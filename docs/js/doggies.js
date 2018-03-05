@@ -13,7 +13,7 @@ function loadDoggy(doggyId, doggyName, doggyDna, doggyPrice, doggyNextPrice, own
 	cardTemplate.find('.doggy-canvas').attr('id', "doggy-canvas-" + doggyId);
 	cardTemplate.find('.doggy-dna').text(doggyDna);
   cardTemplate.find('.doggy-owner').text(ownerAddress);
-  cardTemplate.find('.doggy-owner').attr("href", "https://etherscan.io/address/" + ownerAddress);
+  cardTemplate.find('.doggy-owner').attr("href", "https://ropsten.etherscan.io/address/" + ownerAddress);
   cardTemplate.find('.btn-buy').attr('data-id', doggyId);
   cardTemplate.find('.doggy-price').text(parseFloat(doggyPrice).toFixed(4));
   cardTemplate.find('.doggy-next-price').text(parseFloat(doggyNextPrice).toFixed(4));
@@ -44,7 +44,7 @@ function generateDoggyImage(doggyId, size, canvas){
 
 var App = {
 	contracts: {},
-	CryptoDoggiesAddress: '0x8cdaf0cd259887258bc13a92c0a6da92698644c0',
+	CryptoDoggiesAddress: '0x8aFf4148A9FeB7fB456412095A235BafD8a7787a',
 
   init() {
     return App.initWeb3();
@@ -140,7 +140,7 @@ var App = {
 		event.preventDefault();
 
     // Get the form fields
-		var adrianId = parseInt($(event.target.elements).closest('.btn-buy').data('id'));
+		var doggyId = parseInt($(event.target.elements).closest('.btn-buy').data('id'));
 
     web3.eth.getAccounts((error, accounts) => {
       if (error) {
@@ -149,8 +149,8 @@ var App = {
 			var account = accounts[0];
 
 			let contractInstance = App.contracts.CryptoDoggies.at(App.CryptoDoggiesAddress);
-			contractInstance.priceOf(adrianId).then((price) => {
-				return contractInstance.purchase(adrianId, {
+			contractInstance.priceOf(doggyId).then((price) => {
+				return contractInstance.purchase(doggyId, {
 					from: account,
 					value: price,
 				}).then(result => App.loadDoggies()).catch((err) => {

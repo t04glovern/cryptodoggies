@@ -5,7 +5,7 @@ import "zeppelin-solidity/contracts/ownership/Ownable.sol";
 
 /**
  * @title Migrations
- * @dev This is a truffle contract, needed for truffle integration, not meant for use by Zeppelin users.
+ * @dev This is a truffle contract, needed for truffle integration.
  */
 contract Migrations is Ownable {
     uint256 public lastCompletedMigration;
