@@ -13,7 +13,7 @@ function loadDoggy(doggyId, doggyName, doggyDna, doggyPrice, doggyNextPrice, own
 	cardTemplate.find('.doggy-canvas').attr('id', "doggy-canvas-" + doggyId);
 	cardTemplate.find('.doggy-dna').text(doggyDna);
   cardTemplate.find('.doggy-owner').text(ownerAddress);
-  cardTemplate.find('.doggy-owner').attr("href", "https://ropsten.etherscan.io/address/" + ownerAddress);
+  cardTemplate.find('.doggy-owner').attr("href", "https://etherscan.io/address/" + ownerAddress);
   cardTemplate.find('.btn-buy').attr('data-id', doggyId);
   cardTemplate.find('.doggy-price').text(parseFloat(doggyPrice).toFixed(4));
   cardTemplate.find('.doggy-next-price').text(parseFloat(doggyNextPrice).toFixed(4));
@@ -44,7 +44,7 @@ function generateDoggyImage(doggyId, size, canvas){
 
 var App = {
 	contracts: {},
-	CryptoDoggiesAddress: '0x8aFf4148A9FeB7fB456412095A235BafD8a7787a',
+	CryptoDoggiesAddress: '0x383Bf1fD04D0901bbD674A580E0A621FCBb4799b',
 
   init() {
     return App.initWeb3();
