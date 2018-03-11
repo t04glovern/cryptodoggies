@@ -102,3 +102,11 @@ hr {
 	background-color: #CCA15B;
     border-color: #CCA15B;
 }
+
+/* Text Manipulation */
+
+.outline {
+    color: #fff;
+    text-shadow: #6E362A 1px 1px 5px;
+    -webkit-font-smoothing: antialiased;
+}
