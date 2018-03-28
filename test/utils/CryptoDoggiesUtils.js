@@ -1,18 +1,18 @@
 module.exports = function (CryptoDoggies, accounts) {
-	// checks whether the expected value of totalSupply is the current value
-	function checksTotalSupply (expectedValue) {
-	  it('totalSupply should be equal to ' + expectedValue, function (done) {
+  // checks whether the expected value of totalSupply is the current value
+  function checksTotalSupply (expectedValue) {
+    it('totalSupply should be equal to ' + expectedValue, function (done) {
       CryptoDoggies.deployed().then(function (instance) {
         instance.totalSupply.call().then(function (totalSupply) {
         assert.equal(totalSupply, expectedValue
           , 'totalSupply is not equal to ' + expectedValue);
         }).then(done).catch(done);
       });
-	  });
-	};
+    });
+  };
 
-	function checkDoggyCreation (name) {
-	  it('createToken should create a random doggy named ' + name, function (done) {
+  function checkDoggyCreation (name) {
+    it('createToken should create a random doggy named ' + name, function (done) {
       CryptoDoggies.deployed().then(async function (instance) {
         await instance.createToken(name, { from: accounts[0] })
         .then(function (result) {
@@ -20,7 +20,7 @@ module.exports = function (CryptoDoggies, accounts) {
           assert.equal(result.logs[0].args.name, name);
         });
       }).then(done).catch(done);
-	  });
+    });
   };
 
   function checkDoggyPurchase (tokenId, price) {
@@ -44,7 +44,7 @@ module.exports = function (CryptoDoggies, accounts) {
   };
 
   function checkWithdrawal (withdrawAmount) {
-	  it('withdrawBalance should withdraw ' + withdrawAmount + ' eth', function (done) {
+    it('withdrawBalance should withdraw ' + withdrawAmount + ' eth', function (done) {
       CryptoDoggies.deployed().then(function (instance) {
         instance.withdrawBalance(accounts[0], web3.toWei(withdrawAmount, 'ether'), {
           from: accounts[0]
@@ -54,14 +54,14 @@ module.exports = function (CryptoDoggies, accounts) {
             assert.equal(contractBalance, 0.0);
         });
       }).then(done).catch(done);
-	  });
+    });
   };
 
-	return {
-	/** Token Details */
-	  checksTotalSupply: checksTotalSupply,
+  return {
+  /** Token Details */
+    checksTotalSupply: checksTotalSupply,
     checkDoggyCreation: checkDoggyCreation,
     checkDoggyPurchase: checkDoggyPurchase,
     checkWithdrawal: checkWithdrawal
-	};
+  };
 };

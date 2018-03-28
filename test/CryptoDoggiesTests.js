@@ -27,8 +27,8 @@ contract('CryptoDoggies', function (accounts) {
 
   checksTotalSupply(0);
 
-	for (x = 0; x < 100; x++) {
-		checkDoggyCreation('Doggy' + x);
+  for (x = 0; x < 100; x++) {
+    checkDoggyCreation('Doggy' + x);
   }
 
   for (x = 0; x < 100; x++) {
