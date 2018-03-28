@@ -29,5 +29,11 @@ contract('CryptoDoggies', function (accounts) {
 
 	for (x = 0; x < 100; x++) {
 		checkDoggyCreation('Doggy' + x);
-	}
+  }
+
+  for (x = 0; x < 100; x++) {
+    checkDoggyPurchase(x, 0.01);
+  }
+
+  checkWithdrawal(1.0);
 });
